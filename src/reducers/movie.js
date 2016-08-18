@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux'
 import { createSelector } from 'reselect'
 import reduce from 'lodash/reduce'
-import { CHANGE_SEARCH_TITLE, SEARCH_SUCCESS, DETAILS_SUCCESS } from '../actions/movie'
+import {
+  CHANGE_SEARCH_TITLE,
+  CLEAR_SEARCHES,
+  SEARCH_SUCCESS,
+  DETAILS_SUCCESS
+} from '../actions/movie'
 
 let mountPoint = ''
 
@@ -36,6 +41,8 @@ const movies = (state = {}, { type, payload }) => {
           year: value.Year,
         },
       }), {})
+    case CLEAR_SEARCHES:
+      return {}
     default:
       return state
   }

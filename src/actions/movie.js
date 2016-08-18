@@ -3,6 +3,8 @@ import { CALL_API } from '../middleware/api'
 
 export const CHANGE_SEARCH_TITLE = 'CHANGE_SEARCH_TITLE'
 
+export const CLEAR_SEARCHES = 'CLEAR_SEARCHES'
+
 export const SEARCH_REQUEST = 'SEARCH_REQUEST'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'SEARCH_FAILURE'
@@ -19,6 +21,10 @@ const fetchMovies = throttle((dispatch, title) => dispatch({
 export const search = title => dispatch => {
   if (title.length > 1) {
     fetchMovies(dispatch, title)
+  } else {
+    dispatch({
+      type: CLEAR_SEARCHES
+    })
   }
 
   dispatch({

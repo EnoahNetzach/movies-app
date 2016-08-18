@@ -2,15 +2,16 @@ import React, { PropTypes } from 'react'
 import Input from '../Input'
 import List from './List'
 
-const Impl = ({ movies }) => (
+const Impl = ({ isSearching, movies }) => (
   <div>
     <Input />
 
-    <List movies={movies} />
+    <List isSearching={isSearching} movies={movies} />
   </div>
 )
 
 Impl.propTypes = {
+  isSearching: PropTypes.bool.isRequired,
   movies: PropTypes.object,
 }
 
