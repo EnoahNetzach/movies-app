@@ -7,9 +7,12 @@ module.exports = {
     'babel-preset-react'
   ].map(require.resolve),
   plugins: [
+    'babel-plugin-syntax-async-functions',
     'babel-plugin-syntax-trailing-function-commas',
+    'babel-plugin-transform-async-to-generator',
     'babel-plugin-transform-class-properties',
-    'babel-plugin-transform-object-rest-spread'
+    'babel-plugin-transform-flow-strip-types',
+    'babel-plugin-transform-object-rest-spread',
   ].map(require.resolve).concat([
     [require.resolve('babel-plugin-transform-runtime'), {
       helpers: false,
@@ -18,3 +21,4 @@ module.exports = {
     }]
   ])
 }
+

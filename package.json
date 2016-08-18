@@ -7,8 +7,11 @@
     "babel-core": "6.13.2",
     "babel-eslint": "6.1.2",
     "babel-loader": "6.2.5",
+    "babel-plugin-syntax-async-functions": "6.13.0",
     "babel-plugin-syntax-trailing-function-commas": "6.13.0",
+    "babel-plugin-transform-async-to-generator": "6.8.0",
     "babel-plugin-transform-class-properties": "6.11.5",
+    "babel-plugin-transform-flow-strip-types": "6.8.0",
     "babel-plugin-transform-object-rest-spread": "6.8.0",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-runtime": "6.12.0",
@@ -21,7 +24,7 @@
     "cross-spawn": "4.0.0",
     "css-loader": "0.23.1",
     "eslint": "3.3.1",
-    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-airbnb": "10.0.1",
     "eslint-loader": "1.5.0",
     "eslint-plugin-flowtype": "2.7.1",
     "eslint-plugin-import": "1.13.0",
@@ -42,12 +45,21 @@
     "url-loader": "0.5.7",
     "webpack": "1.13.2",
     "webpack-dashboard": "0.1.1",
-    "webpack-dev-server": "1.14.1",
-    "whatwg-fetch": "1.0.0"
+    "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "lodash": "4.15.0",
+    "normalizr": "2.2.1",
+    "react": "15.2.1",
+    "react-dom": "15.2.1",
+    "react-redux": "4.4.5",
+    "react-router": "2.6.1",
+    "react-router-redux": "4.0.5",
+    "redux": "3.5.2",
+    "redux-immutable-state-invariant": "1.2.3",
+    "redux-logger": "2.6.1",
+    "redux-thunk": "2.1.0",
+    "whatwg-fetch": "1.0.0"
   },
   "scripts": {
     "start": "webpack-dashboard -c cyan -- node ./scripts/start.js",

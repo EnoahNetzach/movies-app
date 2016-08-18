@@ -14,13 +14,13 @@ module.exports = {
 
   parser: 'babel-eslint',
 
-  plugins: [/*'import', */'flowtype', 'jsx-a11y', 'react'],
+  plugins: ['import', 'flowtype', 'jsx-a11y', 'react'],
 
   env: {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
   },
 
   parserOptions: {
@@ -29,13 +29,15 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
       generators: true,
-      experimentalObjectRestSpread: true
+      experimentalObjectRestSpread: true,
+      destructuring: true,
+      spread: true,
     }
   },
 
   settings: {
     flowtype: {
-      'onlyFilesWithFlowAnnotation': true
+      onlyFilesWithFlowAnnotation: true
     },
     'import/ignore': [
       'node_modules',
@@ -44,9 +46,9 @@ module.exports = {
     'import/extensions': ['.js'],
     'import/resolver': {
       node: {
-        extensions: ['.js', '.json']
+        extensions: ['.js', '.json'],
       }
-    }
+    },
   },
 
   rules: {
