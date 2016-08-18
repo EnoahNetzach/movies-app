@@ -4,7 +4,7 @@ import Routes from '../Routes'
 
 const App = ({ store, history }) => (
   <Provider store={store}>
-    <Routes history={history} />
+    <Routes history={history} dispatch={store.dispatch} />
   </Provider>
 )
 

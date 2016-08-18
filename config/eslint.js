@@ -52,10 +52,13 @@ module.exports = {
   },
 
   rules: {
-    semi: ['error', 'never'],
     'comma-dangle': ['error', 'only-multiline'],
-    'spaced-comment': ['warn', 'always'],
     'global-require': 'warn',
+    'no-empty': ['error', {
+      allowEmptyCatch: true,
+    }],
     'react/jsx-filename-extension': 'off',
+    semi: ['error', 'never'],
+    'spaced-comment': ['warn', 'always'],
   }
 }

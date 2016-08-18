@@ -2,14 +2,15 @@ import React, { PropTypes } from 'react'
 
 const passEventValue = callback => event => callback(event.target.value)
 
-const Impl = ({ onTitleChange }) => (
+const Impl = ({ titleSearch, onTitleChange }) => (
   <div>
-    <label htmlFor="title">Title</label>
+    <label htmlFor="movie-search-title">Title</label>
     <div>
       <input
+        id="movie-search-title"
         type="text"
-        placeholder="First Name"
-        name="title"
+        placeholder="Movie Title"
+        value={titleSearch}
         onChange={passEventValue(onTitleChange)}
       />
     </div>
@@ -17,6 +18,7 @@ const Impl = ({ onTitleChange }) => (
 )
 
 Impl.propTypes = {
+  titleSearch: PropTypes.string,
   onTitleChange: PropTypes.func.isRequired,
 }
 

@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
 import apiRequests from './api'
-import movie, { setMountPoint as movieMountPoint } from './movie'
-
-movieMountPoint('movie')
+import movie from './movie'
 
 export default combineReducers({
   routing,
   apiRequests,
-  movie
+  movie: movie('movie')
 })

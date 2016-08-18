@@ -1,12 +1,9 @@
 import { combineReducers } from 'redux'
 import { createSelector } from 'reselect'
 import reduce from 'lodash/reduce'
-import { CHANGE_SEARCH_TITLE, SEARCH_SUCCESS } from '../actions/movie'
+import { CHANGE_SEARCH_TITLE, SEARCH_SUCCESS, DETAILS_SUCCESS } from '../actions/movie'
 
 let mountPoint = ''
-export const setMountPoint = point => {
-  mountPoint = mountPoint === '' ? point : mountPoint
-}
 
 const searchTitle = (state = '', { type, payload }) => {
   switch (type) {
@@ -44,16 +41,59 @@ const movies = (state = {}, { type, payload }) => {
   }
 }
 
-export default combineReducers({
-  searchTitle,
-  totalCount,
-  movies,
-})
+const details = (state = {}, { type, payload }) => {
+  switch (type) {
+    case DETAILS_SUCCESS:
+      if (!payload.response.Response) return state
+      return {
+        ...state,
+        [payload.response.imdbID]: {
+          ...state[payload.response.imdbID],
+          id: payload.response.imdbID,
+          title: payload.response.Title,
+          year: payload.response.Year,
+          director: payload.response.Director,
+          actors: payload.response.Actors === 'N/A' ? [] : payload.response.Actors.split(', '),
+          poster: payload.response.Poster === 'N/A' ? undefined : payload.response.Poster,
+        }
+      }
+    default:
+      return state
+  }
+}
+
+export default point => {
+  mountPoint = mountPoint === '' ? point : mountPoint
+  return combineReducers({
+    search: combineReducers({
+      searchTitle,
+      totalCount,
+      movies,
+    }),
+    details
+  })
+}
 
 const mountPointSelector = state => (mountPoint === '' ? state : state[mountPoint])
 
-export const moviesSelector = createSelector(
-  state => mountPointSelector(state).movies,
+export const searchTitleSelector = createSelector(
+  state => mountPointSelector(state).search.searchTitle,
+  currentTitle => currentTitle
+)
+
+export const searchMoviesSelector = createSelector(
+  state => mountPointSelector(state).search.movies,
+  currentMovies => currentMovies
+)
+
+export const searchMovieSelector = createSelector(
+  state => searchMoviesSelector(state),
   (state, { id } = {}) => id,
-  (currentMovies, id) => (id ? currentMovies[id] : currentMovies)
+  (currentMovies, id) => currentMovies[id]
+)
+
+export const detailSelector = createSelector(
+  state => mountPointSelector(state).details,
+  (state, { id } = {}) => id,
+  (currentMovies, id) => currentMovies[id]
 )

@@ -16,14 +16,27 @@ const fetchMovies = throttle((dispatch, title) => dispatch({
   }
 }), 750)
 
-export const search = title => async dispatch => {
+export const search = title => dispatch => {
+  if (title.length > 1) {
+    fetchMovies(dispatch, title)
+  }
+
   dispatch({
     type: CHANGE_SEARCH_TITLE,
     payload: title,
   })
-
-  if (title.length <= 1) return
-
-  fetchMovies(dispatch, title)
 }
+
+export const DETAILS_REQUEST = 'DETAILS_REQUEST'
+export const DETAILS_SUCCESS = 'DETAILS_SUCCESS'
+export const DETAILS_FAILURE = 'DETAILS_FAILURE'
+
+export const viewDetails = id => ({
+  [CALL_API]: {
+    payload: {
+      types: [DETAILS_REQUEST, DETAILS_SUCCESS, DETAILS_FAILURE],
+      endpoint: `http://www.omdbapi.com/?i=${id}`
+    }
+  }
+})
 
