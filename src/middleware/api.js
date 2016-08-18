@@ -1,4 +1,3 @@
-import fetch from 'whatwg-fetch'
 import {
   API_REQUEST_ABORT,
   METHOD_GET,
@@ -16,10 +15,7 @@ const callApi = async (
   const response = await fetch(endpoint, {
     method,
     body: typeof body === 'object' ? JSON.stringify(body) : body,
-    headers: {
-      'X-Requested-With': 'XMLHttpRequest' // Symfony's isXmlHTTPRequest compatibility
-    },
-    credentials: 'same-origin'
+    credentials: 'same-origin',
   })
   const json = await response.json()
 
@@ -94,8 +90,8 @@ export default store => next => async action => {
 
   const currentRequestId = `request_${requestId++}`
   const wasAborted = () => store.requests && store.requests[currentRequestId]
-  && store.requests[currentRequestId].endpoint === endpoint
-  && store.requests[currentRequestId].type === API_REQUEST_ABORT
+    && store.requests[currentRequestId].endpoint === endpoint
+    && store.requests[currentRequestId].type === API_REQUEST_ABORT
 
   store.dispatch(startRequest(currentRequestId, endpoint, method))
   const abortCurrentRequest = () => store.dispatch(

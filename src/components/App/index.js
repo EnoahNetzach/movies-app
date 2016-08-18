@@ -1,17 +1,16 @@
-import React from 'react'
-import logo from './logo.svg'
-import './index.css'
+import React, { PropTypes } from 'react'
+import { Provider } from 'react-redux'
+import Routes from '../Routes'
 
-const App = () => (
-  <div className="App">
-    <div className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h2>Welcome to React</h2>
-    </div>
-    <p className="App-intro">
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-  </div>
+const App = ({ store, history }) => (
+  <Provider store={store}>
+    <Routes history={history} />
+  </Provider>
 )
+
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+}
 
 export default App

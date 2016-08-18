@@ -5,8 +5,7 @@ import {
   METHOD_GET
 } from '../actions/api'
 
-/* eslint-disable import/prefer-default-export */
-export const apiRequests = (state = {}, { type, payload }) => {
+export default (state = {}, { type, payload }) => {
   if (!payload) {
     return state
   }
