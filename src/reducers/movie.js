@@ -53,6 +53,7 @@ const details = (state = {}, { type, payload }) => {
           title: payload.response.Title,
           year: payload.response.Year,
           director: payload.response.Director,
+          genre: payload.response.Genre,
           actors: payload.response.Actors === 'N/A' ? [] : payload.response.Actors.split(', '),
           poster: payload.response.Poster === 'N/A' ? undefined : payload.response.Poster,
         }

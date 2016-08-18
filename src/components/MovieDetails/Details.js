@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card'
 
 const Impl = ({ movie }) => {
   const title = `${movie.title} (${movie.year})`
@@ -7,24 +8,45 @@ const Impl = ({ movie }) => {
   }
 
   return (
-    <div>
+    <Card>
       {movie.poster ? (
-        <span><img src={movie.poster} role="presentation" /><br /></span>
+        <CardMedia>
+          <div
+            style={{
+              backgroundColor: '#ddd',
+              backgroundImage: `url(${movie.poster})`,
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain',
+              height: '350px',
+            }}
+          />
+        </CardMedia>
       ) : null}
 
-      <strong>Title</strong> {movie.title}<br />
-      <strong>Year</strong> {movie.year}<br />
-      <strong>Director</strong> {movie.director}<br />
+      <CardTitle title={movie.title} subtitle={movie.year} />
 
-      <strong>Actors</strong><br />
-      <ul>
-        {movie.actors.map((actor) => (
-          <li key={actor}>
-            {actor}
-          </li>
-        ))}
-      </ul>
-    </div>
+      <CardText>
+        <h4>Director</h4>
+        {movie.director}
+
+        {movie.actors.length ? (
+          <div>
+            <h4>Actors</h4>
+            <ul>
+              {movie.actors.map((actor) => (
+                <li key={actor}>
+                  {actor}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        <h4>Genre</h4>
+        {movie.genre}
+      </CardText>
+    </Card>
   )
 }
 
@@ -33,6 +55,7 @@ Impl.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
     actors: PropTypes.arrayOf(PropTypes.string).isRequired,
     poster: PropTypes.string,
   }),

@@ -1,15 +1,14 @@
 import React, { PropTypes } from 'react'
+import TextField from 'material-ui/TextField'
 
 const passEventValue = callback => event => callback(event.target.value)
 
 const Impl = ({ titleSearch, onTitleChange }) => (
   <div>
-    <label htmlFor="movie-search-title">Title</label>
     <div>
-      <input
-        id="movie-search-title"
-        type="text"
-        placeholder="Movie Title"
+      <TextField
+        hintText="Title"
+        floatingLabelText="Write a Movie Title"
         value={titleSearch}
         onChange={passEventValue(onTitleChange)}
       />

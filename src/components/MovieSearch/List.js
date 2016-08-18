@@ -1,15 +1,18 @@
 import React, { PropTypes } from 'react'
 import map from 'lodash/map'
+import { List as MaterialList } from 'material-ui/List'
+import Divider from 'material-ui/Divider'
 import Item from './Item'
 
 const List = ({ movies }) => (
-  <div>
+  <MaterialList style={{ maxWidth: '360px' }}>
     {map(movies, movie => (
       <div key={movie.id}>
         <Item movie={movie} />
+        <Divider />
       </div>
     ))}
-  </div>
+  </MaterialList>
 )
 
 List.propTypes = {

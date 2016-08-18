@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
+import { ListItem } from 'material-ui/List'
 import { movieRoute } from '../Routes'
 
 const Item = ({ movie }) => (
   <Link to={movieRoute(movie.id)}>
-    {movie.title} ({movie.year})
+    <ListItem
+      primaryText={movie.title}
+      secondaryText={movie.year}
+    />
   </Link>
 )
 

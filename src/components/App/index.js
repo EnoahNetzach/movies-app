@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react'
 import { Provider } from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Routes from '../Routes'
 
 const App = ({ store, history }) => (
   <Provider store={store}>
-    <Routes history={history} dispatch={store.dispatch} />
+    <MuiThemeProvider>
+      <Routes history={history} dispatch={store.dispatch} />
+    </MuiThemeProvider>
   </Provider>
 )
 
