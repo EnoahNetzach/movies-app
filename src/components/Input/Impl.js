@@ -8,7 +8,7 @@ const Impl = ({ titleSearch, onTitleChange }) => (
     <div>
       <TextField
         hintText="Title"
-        floatingLabelText="Write a Movie Title"
+        floatingLabelText="Search a Movie Title"
         value={titleSearch}
         onChange={passEventValue(onTitleChange)}
         errorText={titleSearch.length === 1 ? 'Write more than one character' : undefined}
