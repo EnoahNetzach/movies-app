@@ -4,7 +4,6 @@ import createLogger from 'redux-logger'
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 import { routerMiddleware } from 'react-router-redux'
 import api from '../middleware/api'
-import normalize from '../middleware/normalize'
 
 export default (rootReducer, initialState = {}) => createStore(
   rootReducer,
@@ -15,7 +14,6 @@ export default (rootReducer, initialState = {}) => createStore(
       immutableStateInvariant(),
       thunk,
       api,
-      normalize,
       createLogger({ collapsed: true }),
     ),
     window.devToolsExtension ? window.devToolsExtension() : f => f,
