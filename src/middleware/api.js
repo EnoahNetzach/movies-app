@@ -89,9 +89,10 @@ export default store => next => async action => {
   }))
 
   const currentRequestId = `request_${requestId++}`
-  const wasAborted = () => store.requests && store.requests[currentRequestId]
-    && store.requests[currentRequestId].endpoint === endpoint
-    && store.requests[currentRequestId].type === API_REQUEST_ABORT
+  const wasAborted = () => store.getState().requests
+    && store.getState().requests[currentRequestId]
+    && store.getState().requests[currentRequestId].endpoint === endpoint
+    && store.getState().requests[currentRequestId].type === API_REQUEST_ABORT
 
   store.dispatch(startRequest(currentRequestId, endpoint, method))
   const abortCurrentRequest = () => store.dispatch(

@@ -23,6 +23,10 @@
             "plugins": [
                 "transform-react-constant-elements"
             ]
+        },
+        "test": {
+            "comments": true,
+            "compact": false
         }
     }
 }

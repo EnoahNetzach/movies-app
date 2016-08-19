@@ -17,5 +17,6 @@
   "globals": {
     "__DEV__": false,
     "__PROD__": true
-  }
+  },
+  "setupEnvScriptFile": "<rootDir>/config/jest/setupEnvScriptFile.js"
 }
