@@ -1,0 +1,21 @@
+{
+  "name": "movies-app",
+  "testPathDirs": [
+    "src"
+  ],
+  "automock": false,
+  "browser": true,
+  "testPathIgnorePatterns": [
+    "/node_modules"
+  ],
+  "unmockedModulePathPatterns": [
+    "<rootDir>/node_modules/react",
+    "<rootDir>/node_modules/react-dom",
+    "<rootDir>/node_modules/react-addons-test-utils"
+  ],
+  "coverageDirectory": "<rootDir>/coverage",
+  "globals": {
+    "__DEV__": false,
+    "__PROD__": true
+  }
+}

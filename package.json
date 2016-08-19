@@ -6,6 +6,7 @@
     "autoprefixer": "6.4.0",
     "babel-core": "6.13.2",
     "babel-eslint": "6.1.2",
+    "babel-jest": "14.1.0",
     "babel-loader": "6.2.5",
     "babel-plugin-syntax-async-functions": "6.13.0",
     "babel-plugin-syntax-trailing-function-commas": "6.13.0",
@@ -36,6 +37,7 @@
     "fs-extra": "0.30.0",
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.22.0",
+    "jest-cli": "14.1.0",
     "json-loader": "0.5.4",
     "opn": "4.0.2",
     "postcss-loader": "0.10.1",
@@ -66,9 +68,7 @@
   },
   "scripts": {
     "start": "webpack-dashboard -c cyan -- node ./scripts/start.js",
-    "build": "node ./scripts/build.js"
-  },
-  "eslintConfig": {
-    "extends": "./config/eslint.js"
+    "build": "node ./scripts/build.js",
+    "test": "jest --config ./.jestrc"
   }
 }

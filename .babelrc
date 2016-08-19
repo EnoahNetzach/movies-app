@@ -1,0 +1,28 @@
+{
+    "presets": [
+        "es2015",
+        "es2016",
+        "react"
+    ],
+    "plugins": [
+        "syntax-async-functions",
+        "syntax-trailing-function-commas",
+        "transform-async-to-generator",
+        "transform-class-properties",
+        "transform-flow-strip-types",
+        "transform-object-rest-spread",
+        ["transform-runtime", {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true
+        }]
+    ],
+    "env": {
+        "development": {},
+        "production": {
+            "plugins": [
+                "transform-react-constant-elements"
+            ]
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "root": true,
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "plugins": ["import", "flowtype", "jsx-a11y", "react"],
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "generators": true,
+            "experimentalObjectRestSpread": true,
+            "destructuring": true,
+            "spread": true
+        }
+    },
+    "settings": {
+        "flowtype": {
+            "onlyFilesWithFlowAnnotation": true
+        },
+        "import/ignore": [
+            "node_modules",
+            "\\.(json|css|jpg|png|gif|eot|svg|ttf|woff|woff2|mp4|webm)$"
+        ],
+        "import/extensions": [".js"],
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".json"]
+            }
+        }
+    },
+    "rules": {
+        "comma-dangle": ["error", "only-multiline"],
+        "global-require": "warn",
+        "no-empty": ["error", {
+            "allowEmptyCatch": true
+        }],
+        "react/jsx-filename-extension": ["error", {
+            "extensions": ["js"]
+        }],
+        "semi": ["error", "never"],
+        "spaced-comment": ["warn", "always"]
+    }
+}
