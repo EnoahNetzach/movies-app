@@ -13,7 +13,7 @@ const fetchMovies = throttle((dispatch, title) => dispatch({
   [CALL_API]: {
     payload: {
       types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE],
-      endpoint: `http://www.omdbapi.com/?s=${title}`
+      endpoint: `https://www.omdbapi.com/?s=${title}`
     }
   }
 }), 750)
@@ -41,7 +41,7 @@ export const viewDetails = id => ({
   [CALL_API]: {
     payload: {
       types: [DETAILS_REQUEST, DETAILS_SUCCESS, DETAILS_FAILURE],
-      endpoint: `http://www.omdbapi.com/?i=${id}`
+      endpoint: `https://www.omdbapi.com/?i=${id}`
     }
   }
 })

@@ -5,8 +5,10 @@ import { viewDetails } from '../../actions/movie'
 import MovieSearch from '../MovieSearch'
 import MovieDetails from '../MovieDetails'
 
-export const searchRoute = () => '/'
-export const movieRoute = id => `/${id}`
+const baseUri = document.location.hostname === 'localhost' ? '/' : '/movies-app/'
+
+export const searchRoute = () => `${baseUri}`
+export const movieRoute = id => `${baseUri}${id}`
 
 const onSearchEnter = () => { document.title = 'Search a Movie' }
 const onDetailsEnter = dispatch => nextState => dispatch(viewDetails(nextState.params.id))

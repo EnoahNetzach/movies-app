@@ -2,6 +2,7 @@
   "name": "movies-app",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://enoahnetzach.github.io/movies-app",
   "devDependencies": {
     "autoprefixer": "6.4.0",
     "babel-core": "6.13.2",

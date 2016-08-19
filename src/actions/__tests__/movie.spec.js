@@ -28,7 +28,7 @@ describe('search', () => {
       [CALL_API]: {
         payload: {
           types: [SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE],
-          endpoint: 'http://www.omdbapi.com/?s=title'
+          endpoint: 'https://www.omdbapi.com/?s=title'
         }
       }
     })
@@ -59,7 +59,7 @@ describe('viewDetails', () => {
       [CALL_API]: {
         payload: {
           types: [DETAILS_REQUEST, DETAILS_SUCCESS, DETAILS_FAILURE],
-          endpoint: 'http://www.omdbapi.com/?i=id'
+          endpoint: 'https://www.omdbapi.com/?i=id'
         }
       }
     })
