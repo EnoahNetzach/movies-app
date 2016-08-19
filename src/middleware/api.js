@@ -5,6 +5,7 @@ import {
   abortRequest,
   finishRequest
 } from '../actions/api'
+import { apiRequestsSelector } from '../reducers/api'
 
 let requestId = 0
 
@@ -89,10 +90,11 @@ export default store => next => async action => {
   }))
 
   const currentRequestId = `request_${requestId++}`
-  const wasAborted = () => store.getState().requests
-    && store.getState().requests[currentRequestId]
-    && store.getState().requests[currentRequestId].endpoint === endpoint
-    && store.getState().requests[currentRequestId].type === API_REQUEST_ABORT
+  const wasAborted = () => apiRequestsSelector(store.getState())
+    .some(request => request.requestId === currentRequestId
+      && request.endpoint === endpoint
+      && request.type === API_REQUEST_ABORT
+    )
 
   store.dispatch(startRequest(currentRequestId, endpoint, method))
   const abortCurrentRequest = () => store.dispatch(

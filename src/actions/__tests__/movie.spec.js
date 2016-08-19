@@ -14,7 +14,10 @@ import {
   viewDetails,
 } from '../movie'
 
-jest.mock('lodash/throttle', () => fn => fn)
+jest.mock('lodash/throttle', () => fn => {
+  fn.cancel = () => {}
+  return fn
+})
 
 const store = configureMockStore([thunk, api])({})
 
@@ -22,7 +25,7 @@ describe('search', () => {
   it('creates the actual action', () => {
     spyOn(store, 'dispatch')
 
-    search('title')(store.dispatch)
+    search('title')(store.dispatch, store.getState)
 
     expect(store.dispatch).toHaveBeenCalledWith({
       [CALL_API]: {
@@ -41,7 +44,7 @@ describe('search', () => {
   it('clears the search if the title is too short', () => {
     spyOn(store, 'dispatch')
 
-    search('t')(store.dispatch)
+    search('t')(store.dispatch, store.getState)
 
     expect(store.dispatch).toHaveBeenCalledWith({
       type: CLEAR_SEARCHES

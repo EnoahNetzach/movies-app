@@ -95,7 +95,7 @@ export const searchMoviesSelector = createSelector(
 )
 
 export const searchMovieSelector = createSelector(
-  state => searchMoviesSelector(state),
+  searchMoviesSelector,
   (state, { id } = {}) => id,
   (currentMovies, id) => currentMovies[id]
 )

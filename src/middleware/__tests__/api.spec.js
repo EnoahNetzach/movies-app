@@ -6,9 +6,20 @@ import {
   finishRequest,
   abortRequest,
 } from '../../actions/api'
+import { apiRequestsSelector } from '../../reducers/api'
 import api, { CALL_API } from '../api'
 
 jest.mock('../../actions/api')
+jest.mock('../../reducers/api', () => {
+  const apiRequestsSelectorMock = () => ({
+    some: () => apiRequestsSelectorMock.callback()
+  })
+  apiRequestsSelectorMock.callback = () => false
+
+  return {
+    apiRequestsSelector: apiRequestsSelectorMock
+  }
+})
 
 const mockStore = configureStore()
 
@@ -171,19 +182,22 @@ describe('api middleware', () => {
   })
 
   it('handles an abort action', async done => {
+    apiRequestsSelector.callback = () => true
+
     const func = { next: a => a }
 
     spyOn(func, 'next')
     spyOn(abortRequest, 'callback').and.callThrough()
 
     const store = mockStore({
-      requests: new Proxy({}, {
-        get: () => ({
+      apiRequests: {
+        request: {
           endpoint: 'endpoint',
           type: API_REQUEST_ABORT
-        })
-      })
+        }
+      }
     })
+
     await api(store)(func.next)({
       [CALL_API]: {
         type: 'MOCK_ACTION',
@@ -193,6 +207,8 @@ describe('api middleware', () => {
         }
       }
     })
+
+    apiRequestsSelector.callback = () => false
 
     expect(abortRequest.callback).toHaveBeenCalledWith(
       jasmine.any(String),

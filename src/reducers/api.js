@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect'
+import filter from 'lodash/filter'
 import {
   API_REQUEST_START,
   API_REQUEST_ABORT,
@@ -38,3 +40,16 @@ export default (state = {}, { type, payload }) => {
       return state
   }
 }
+
+export const apiRequestsSelector = createSelector(
+  state => state.apiRequests,
+  (state, { id, endpoint, method } = {}) => ({ id, endpoint, method }),
+  (requests, { id, endpoint, method }) => filter(requests, request =>
+    typeof request !== 'undefined'
+    && (
+      (!id && !endpoint && !method)
+      || request.id === id
+      || (request.endpoint === endpoint && request.method === method)
+    )
+  )
+)
